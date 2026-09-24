@@ -1,0 +1,16 @@
+services:
+  mimir:
+    build: .
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      DATA_DIR: /data
+    volumes:
+      - mimir-data:/data
+    restart: unless-stopped
+
+volumes:
+  mimir-data:
