@@ -11,3 +11,10 @@ test("server refuses silent authorized production deploy", () => {
   const src = fs.readFileSync(new URL("../src/server.js", import.meta.url), "utf8");
   assert.match(src, /cannot auto-deploy Mirror changes/);
 });
+
+test("slice 2 exposes streaming and webauthn routes", () => {
+  const src = fs.readFileSync(new URL("../src/server.js", import.meta.url), "utf8");
+  assert.match(src, /\/api\/chat\/stream/);
+  assert.match(src, /\/api\/webauthn\/register\/options/);
+  assert.match(src, /L3_REQUIRED/);
+});
